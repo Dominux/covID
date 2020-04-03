@@ -1,0 +1,7 @@
+# Venv dirs
+covID_venv/
+.vscode/
+
+# Private data
+data_config.json
+vk_config.v2.json
