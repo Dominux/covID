@@ -2,6 +2,9 @@
 covID_venv/
 .vscode/
 
+# Python shit
+__pycache__/
+
 # Private data
 data_config.json
 vk_config.v2.json
