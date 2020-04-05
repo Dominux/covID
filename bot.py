@@ -4,10 +4,10 @@ from action import Action
 from errors import error_handler
 
 
-@error_handler
+# @error_handler
 def bot_run():
     action = Action(["Московская область"])
-    action.execute()
+    action.post_statistic()
 
 
 if __name__ == "__main__":

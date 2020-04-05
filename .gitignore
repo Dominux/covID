@@ -2,6 +2,9 @@
 covID_venv/
 .vscode/
 
+# Dev and Prod dirs
+static/
+
 # Python shit
 __pycache__/
 
