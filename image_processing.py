@@ -6,7 +6,7 @@ class StatisticImage:
     IMAGES_DIR = 'static/images/'
     FONTS_DIR = 'static/fonts/'
 
-    def __init__(self, filename, *text_notes):
+    def __init__(self, filename, text_notes):
         """
         :param filename (str):  Name of the image file
         :param text_notes (list):  Text description in format: { 

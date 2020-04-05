@@ -1,10 +1,8 @@
 from requests_html import HTMLSession
-import json
 import vk_api
 
+from read_config import DATA
 from image_processing import StatisticImage
-
-# TODO Написать метод сборки сообщения и вызывать его в Action._get_statistic_image()
 
 
 class Action:
@@ -16,7 +14,6 @@ class Action:
 
     def post_statistic(self):
         """ Post statisctic post in vk """
-        self._read_config()
         self._get_request()
         self._parse_statistic_response()
         self._get_vk_api()
@@ -24,11 +21,6 @@ class Action:
         for region in self.needed_regions:
             attachment = self._get_attachment(region)
             self._make_vk_post(attachment)
-
-    def _read_config(self):
-        """ Reading data for VK session """
-        with open('data_config.json') as json_data:
-            self.vk_data = json.load(json_data)
 
     def _get_request(self):
         """ Request to website """
@@ -43,30 +35,39 @@ class Action:
                         for i, item in enumerate(data_text) if i % 4 == 0}
 
     def _get_attachment(self, region: str):
-        """ Making message for VK post """
+        """ Making attachment for VK post """
         vk_upload = vk_api.VkUpload(self.vk)
-        image_file = self._get_stastic_image(region)
+
+        image_data = DATA['image']
+        text_notes = [
+            {
+                'xy': image_data['xy'][index],
+                'text': text_note,
+                'font_family': image_data['font_family'],
+                'font_size': image_data['font_size'],
+                'color': image_data['color']
+            } for index, text_note in enumerate(self.regions[region])
+        ]
+
+        image_file = StatisticImage(
+            self.filename,
+            text_notes
+        ).make_image()
+
         photo = vk_upload.photo_wall(
             image_file,
-            group_id=self.vk_data['dev']['club_number']
+            group_id=DATA['dev']['club_number']
         )
-        return f"photo{photo[0]['owner_id']}_{photo[0]['id']}"
 
-    def _get_stastic_image(self, region: str):
-        img = StatisticImage(
-            self.filename,
-            {'xy': (20, 30), 'text': 'skgnd',
-             'font_family': 'Inkfree.ttf', 'font_size': 25, 'color': 'red'}
-        )
-        return img.make_image()
+        return f"photo{photo[0]['owner_id']}_{photo[0]['id']}"
 
     def _get_vk_api(self):
         """ Getting VK API """
         vk_session = vk_api.VkApi(
-            login=self.vk_data['user']['login'],
-            token=self.vk_data['dev']['access_token'],
-            app_id=self.vk_data['app']['client_id'],
-            client_secret=self.vk_data['app']['service_key']
+            login=DATA['user']['login'],
+            token=DATA['dev']['access_token'],
+            app_id=DATA['app']['client_id'],
+            client_secret=DATA['app']['service_key']
         )
         self.vk = vk_session.get_api()
 
@@ -75,6 +76,6 @@ class Action:
         print(self.vk.wall.post(
             message='ке ллол',
             attachment=attachment,
-            owner_id=f"-{self.vk_data['dev']['club_number']}",
+            owner_id=f"-{DATA['dev']['club_number']}",
             from_group=1
         ))
