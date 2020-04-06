@@ -1,0 +1,43 @@
+{
+  "statistic_website": "http://xn--80aesfpebagmfblc0a.xn--p1ai/",
+  "post_url": "https://vk.com/wall-",
+  "env": "!!! Past 'dev' or 'prod' !!!",
+  "dev": {
+    "user": {
+      "login": "!!! Phone number of your vk account !!!"
+    },
+    "app": {
+      "client_id": "!!!  !!!",
+      "service_key": "!!! !!!"
+    },
+    "clubs": [
+      {
+        "club_id": "!!! !!!",
+        "region": "!!! Region for this club !!!",
+        "access_token": "!!! Get it with scope wall,photos !!!"
+      }
+    ],
+    "time": {
+      "period_in_hours": "!!! number Period between publising !!!",
+      "relay_in_seconds": "!!! number Relay beetween tryings !!!"
+    }
+  },
+  "prod": {
+    "similar with dev": "!!! !!!"
+  },
+  "image": {
+    "filename": "!!! !!!",
+    "font_family": "!!! !!!",
+    "font_size": "!!! number !!!",
+    "color": "!!! !!!",
+    "xy": [
+      [
+        "!!! !!!",
+        "!!! !!!"
+      ],
+      [
+        "..."
+      ]
+    ]
+  }
+}

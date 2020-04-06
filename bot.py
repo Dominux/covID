@@ -62,8 +62,6 @@ class Action:
 
     """
 
-    filename = 'image.jpg'
-
     def __init__(self, data_from_bot):
         self.DATA = data_from_bot
         self.clubs = self.DATA['info']['clubs']
@@ -106,13 +104,13 @@ class Action:
         ]
 
         image_file = StatisticImage(
-            self.filename,
+            self.DATA['image']['filename'],
             text_notes
         ).make_image()
 
         photo = vk_upload.photo_wall(
             image_file,
-            group_id=club['club_number']
+            group_id=club['club_id']
         )
 
         return f"photo{photo[0]['owner_id']}_{photo[0]['id']}"
@@ -132,8 +130,8 @@ class Action:
         post_id = self.vk.wall.post(
             message='ке ллол',
             attachment=attachment,
-            owner_id=f"-{club['club_number']}",
+            owner_id=f"-{club['club_id']}",
             from_group=1
         )['post_id']
 
-        print(f"{self.DATA['post_url']}{club['club_number']}_{post_id}")
+        print(f"{self.DATA['post_url']}{club['club_id']}_{post_id}")

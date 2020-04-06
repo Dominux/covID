@@ -3,11 +3,11 @@ covID_venv/
 .vscode/
 
 # Dev and Prod dirs
-static/
+static/images/*
+static/fonts/*
 
 # Python shit
 __pycache__/
 
 # Private data
-data_config.json
 vk_config.v2.json
