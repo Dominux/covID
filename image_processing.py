@@ -22,7 +22,7 @@ class StatisticImage:
         self.image = ImageDraw.Draw(self.image_file)
 
     def make_image(self):
-        """ Main function """
+        """ Main method """
         for text_note in self.text_notes:
             current_font = f"{self.FONTS_DIR}{text_note['font_family']}"
             font = ImageFont.truetype(
