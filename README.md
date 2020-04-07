@@ -10,10 +10,10 @@
     * Your image into `static/images/` 
     * Your font into `static/fonts/`
 3. Change `data_config.json` according to this:
-    * "env": "prod" of "dev"
-    * "dev": your vk login, vk app info, and clubs info, time info. This data exists to be used for developing and testing
-    * "prod": similar to "dev", but for production. Be carefully!!!
-    * "image": all data according the image what you are going to use (I hope you will deal with it)
+    * `"env"`: `"prod"` of `"dev"`
+    * `"dev"`: your vk login, vk app info, and clubs info, time info. This data exists to be used for developing and testing
+    * `"prod"`: similar to `"dev"`, but for production. Be carefully!!!
+    * `"image"`: all data according to the image what you are going to use (I hope you will deal with it)
 4. Run `app.py`
 
 ## Disadvantages (what is planned to change)
