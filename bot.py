@@ -14,7 +14,7 @@ class Bot:
         self.read_config()
         self._set_next_post_time()
 
-    @error_handler
+    # @error_handler
     def run(self):
         """ Main method """
         while True:
@@ -96,27 +96,14 @@ class Action:
         """ Making attachment for VK post """
         vk_upload = vk_api.VkUpload(self.vk)
 
-        image_data = self.DATA['image']
-        info = self.regions_info[club['region']] + self.rus_info
-        text_notes = [
-            {
-                'xy': image_data['xy'][index],
-                'text': text_note,
-                'font_family': image_data['font_family'],
-                'font_size': image_data['font_size'],
-                'color': image_data['color']
-            } for index, text_note in enumerate(info)
-        ]
-
+        text_notes = self.regions_info[club['region']] + self.rus_info
         image_file = StatisticImage(
-            self.DATA['image']['filename'],
+            self.DATA['image'],
+            club['region'],
             text_notes
         ).make_image()
 
-        photo = vk_upload.photo_wall(
-            image_file,
-            group_id=club['club_id']
-        )
+        photo = vk_upload.photo_wall(image_file, group_id=club['club_id'])
 
         return f"photo{photo[0]['owner_id']}_{photo[0]['id']}"
 
