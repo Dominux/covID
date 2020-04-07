@@ -8,5 +8,5 @@ def error_handler(func):
         try:
             func(self_arg)
         except Exception as e:
-            print(e)
+            print("Error:", e)
     return wrapper

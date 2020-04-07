@@ -9,14 +9,18 @@
 2. Put:
     * Your image into `static/images/` 
     * Your font into `static/fonts/`
-3. Fill `data_config.json` according to its description
+3. Change `data_config.json` according to this:
+    * "env": "prod" of "dev"
+    * "dev": your vk login, vk app info, and clubs info, time info. This data exists to be used for developing and testing
+    * "prod": similar to "dev", but for production. Be carefully!!!
+    * "image": all data according the image what you are going to use (I hope you will deal with it)
 4. Run `app.py`
 
 ## Disadvantages (what is planned to change)
 1. Close-to-code image processing. To set what you want you need do a lot of manipulations, such as:
     * Set right `xy` coordinates
-    * Write it into `data_config.json` (thx at least for reuploading data_config at an every publishing iteration)
-    * Upload image and font files into those directories (yep, it's reuploaded too, I've decided at least this problem already)
+    * Write it into `data_config.json` (thx at least for reloading data_config at an every publishing iteration)
+    * Upload image and font files into those directories (yep, it's reloaded too, I've decided at least this problem already)
     * And... who knows, u can get an error, or a bad attachment due to invalid data :(
 
 And anyway, it has to be rewrited on server itself! Wht's the f... It's so terrible and you know it

@@ -1,42 +1,84 @@
 {
   "statistic_website": "http://xn--80aesfpebagmfblc0a.xn--p1ai/",
   "post_url": "https://vk.com/wall-",
-  "env": "!!! Past 'dev' or 'prod' !!!",
+  "env": "dev",
   "dev": {
     "user": {
-      "login": "!!! Phone number of your vk account !!!"
+      "login": "+12345678910"
     },
     "app": {
-      "client_id": "!!!  !!!",
-      "service_key": "!!! !!!"
+      "client_id": 9999999,
+      "service_key": "4dc4b3874dc4b3874dc9b3877b4db4081a94dc99dc4b387134283364ef76577efc9a996",
+      "access_token": "8d5aed9c2b3813706e18af65ca265411eda027c576a0fc413081507f04f1bf0963587cf12aff6f3cf3175"
     },
     "clubs": [
       {
-        "club_id": "!!! !!!",
-        "region": "!!! Region for this club !!!",
-        "access_token": "!!! Get it with scope wall,photos !!!"
+        "club_id": "9999999",
+        "region": "Московская область"
       }
     ],
     "time": {
-      "period_in_hours": "!!! number Period between publising !!!",
-      "relay_in_seconds": "!!! number Relay beetween tryings !!!"
+      "period_in_hours": 1,
+      "relay_in_seconds": 10
     }
   },
   "prod": {
-    "similar with dev": "!!! !!!"
+    "user": {
+      "login": "+12345678910"
+    },
+    "app": {
+      "client_id": 9999999,
+      "service_key": "4dc4b3874dc4b3874dc9b3877b4db4081a94dc99dc4b387134283364ef76577efc9a996",
+      "access_token": "8d5aed9c2b3813706e18af65ca265411eda027c576a0fc413081507f04f1bf0963587cf12aff6f3cf3175"
+    },
+    "clubs": [
+      {
+        "club_id": "7777777",
+        "region": "Пензенская область"
+      },
+      {
+        "club_id": "88888888",
+        "region": "Алтайский край"
+      },
+      {
+        "club_id": "9999999",
+        "region": "Московская область"
+      }
+    ],
+    "time": {
+      "period_in_hours": 4,
+      "relay_in_seconds": 10
+    }
   },
   "image": {
-    "filename": "!!! !!!",
-    "font_family": "!!! !!!",
-    "font_size": "!!! number !!!",
-    "color": "!!! !!!",
+    "filename": "image.jpg",
+    "font_family": "InkFree.otf",
+    "font_size": 50,
+    "color": "white",
     "xy": [
       [
-        "!!! !!!",
-        "!!! !!!"
+        20,
+        20
       ],
       [
-        "..."
+        20,
+        320
+      ],
+      [
+        20,
+        620
+      ],
+      [
+        100,
+        20
+      ],
+      [
+        100,
+        320
+      ],
+      [
+        100,
+        620
       ]
     ]
   }

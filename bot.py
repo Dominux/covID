@@ -18,7 +18,7 @@ class Bot:
     def run(self):
         """ Main method """
         while True:
-            if datetime.now() > self.next_post_time:
+            if datetime.now() > self.next_post_time or self.DATA['env'] == 'dev':
                 self.read_config()
                 self._set_next_post_time()
                 action = Action(self.DATA)
@@ -70,9 +70,9 @@ class Action:
         """ Post statisctic posts in all vk clubs """
         self._get_request()
         self._parse_statistic_response()
+        self._get_vk_api()
 
         for club in self.clubs:
-            self._get_vk_api(club)
             attachment = self._get_attachment(club)
             self._make_vk_post(club, attachment)
 
@@ -88,11 +88,16 @@ class Action:
         self.regions_info = {item: data_text[i + 1: i + 4]
                              for i, item in enumerate(data_text) if i % 4 == 0}
 
+        html_rus_results = self.response.html.find(
+            '.d-map__counter', first=True).find('h3')
+        self.rus_info = [_.text.split('+')[0] for _ in html_rus_results]
+
     def _get_attachment(self, club):
         """ Making attachment for VK post """
         vk_upload = vk_api.VkUpload(self.vk)
 
         image_data = self.DATA['image']
+        info = self.regions_info[club['region']] + self.rus_info
         text_notes = [
             {
                 'xy': image_data['xy'][index],
@@ -100,7 +105,7 @@ class Action:
                 'font_family': image_data['font_family'],
                 'font_size': image_data['font_size'],
                 'color': image_data['color']
-            } for index, text_note in enumerate(self.regions_info[club['region']])
+            } for index, text_note in enumerate(info)
         ]
 
         image_file = StatisticImage(
@@ -115,11 +120,11 @@ class Action:
 
         return f"photo{photo[0]['owner_id']}_{photo[0]['id']}"
 
-    def _get_vk_api(self, club):
+    def _get_vk_api(self):
         """ Getting VK API """
         vk_session = vk_api.VkApi(
             login=self.DATA['info']['user']['login'],
-            token=club['access_token'],
+            token=self.DATA['info']['app']['access_token'],
             app_id=self.DATA['info']['app']['client_id'],
             client_secret=self.DATA['info']['app']['service_key']
         )
