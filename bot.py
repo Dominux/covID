@@ -14,7 +14,7 @@ class Bot:
         self.read_config()
         self._set_next_post_time()
 
-    # @error_handler
+    @error_handler
     def run(self):
         """ Main method """
         while True:

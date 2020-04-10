@@ -4,7 +4,9 @@ covID_venv/
 
 # Dev and Prod dirs
 static/images/*
+!static/images/.gitkeep
 static/fonts/*
+!static/fonts/.gitkeep
 
 # Python shit
 __pycache__/
