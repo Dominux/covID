@@ -47,8 +47,8 @@ class Bot:
             cur_datetime.year,
             cur_datetime.month,
             cur_datetime.day,
-            int(time_point[0]),
-            int(time_point[1]),
+            int(time_point.split(':')[0]),
+            int(time_point.split(':')[1])
         ) for time_point in self.DATA['info']['time_points']]
 
         self.next_post_time = time_points[0]
@@ -62,9 +62,7 @@ class Bot:
 class Action:
     """
         One bot action (iteration)
-
         Main method - Action.post_statistic()
-
     """
 
     def __init__(self, data_from_bot):
