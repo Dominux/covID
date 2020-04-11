@@ -14,7 +14,7 @@ class Bot:
         self.read_config()
         self._set_next_post_time()
 
-    @error_handler
+    # @error_handler
     def run(self):
         """ Main method """
         while True:
@@ -25,7 +25,7 @@ class Bot:
                 action.post_statistic()
 
             print(f"{datetime.now().time()} - Bot is running")
-            time.sleep(self.DATA['info']['time']['relay_in_seconds'])
+            time.sleep(self.DATA['info']['relay_in_seconds'])
 
     def read_config(self):
         """ Setting DATA """
@@ -47,8 +47,8 @@ class Bot:
             cur_datetime.year,
             cur_datetime.month,
             cur_datetime.day,
-            time_point[0],
-            time_point[1]
+            int(time_point[0]),
+            int(time_point[1]),
         ) for time_point in self.DATA['info']['time_points']]
 
         self.next_post_time = time_points[0]
