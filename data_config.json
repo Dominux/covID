@@ -17,10 +17,11 @@
         "region": "Московская область"
       }
     ],
-    "time": {
-      "period_in_hours": 1,
-      "relay_in_seconds": 10
-    }
+    "time_points": [
+      "10:30",
+      "22:00"
+    ],
+    "relay_in_seconds": 10
   },
   "prod": {
     "user": {
@@ -45,10 +46,11 @@
         "region": "Московская область"
       }
     ],
-    "time": {
-      "period_in_hours": 4,
-      "relay_in_seconds": 10
-    }
+    "times_points": [
+      "10:30",
+      "22:00"
+    ],
+    "relay_in_seconds": 10
   },
   "image": {
     "filename": "image.jpg",

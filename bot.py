@@ -41,17 +41,22 @@ class Bot:
     def _set_next_post_time(self):
         """ Setting the next post time """
         cur_datetime = datetime.now()
-        next_hour = datetime(
+
+        # Expected sorted time_points
+        time_points = [datetime(
             cur_datetime.year,
             cur_datetime.month,
             cur_datetime.day,
-            cur_datetime.hour + 1
-        )
+            time_point[0],
+            time_point[1]
+        ) for time_point in self.DATA['info']['time_points']]
 
-        while next_hour.hour % self.DATA['info']['time']['period_in_hours'] != 0:
-            next_hour = next_hour.replace(hour=(next_hour.hour + 1))
+        self.next_post_time = time_points[0]
 
-        self.next_post_time = next_hour
+        for time_point in time_points:
+            if time_point > cur_datetime:
+                self.next_post_time = time_point
+                break
 
 
 class Action:
