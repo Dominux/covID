@@ -24,7 +24,8 @@ class Bot:
                 action = Action(self.DATA)
                 action.post_statistic()
 
-            print(f"{datetime.now().time()} - Bot is running")
+            print(
+                f"{datetime.now().time()} - Bot is running in {self.DATA['env'].upper()} mode")
             time.sleep(self.DATA['info']['relay_in_seconds'])
 
     def read_config(self):
