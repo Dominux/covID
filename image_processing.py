@@ -31,11 +31,12 @@ class StatisticImage:
 
     def make_image(self):
         """ Main method """
-        self.image.text(
+        self.image.multiline_text(
             xy=self.image_data['region_name']['xy'],
-            text=self.region,
+            text='\n'.join(self.region.split()),
             font=self.region_name_font,
-            fill=self.image_data['color']
+            fill=self.image_data['color'],
+            align='center'
         )
 
         for index, text_note in enumerate(self.text_notes):

@@ -9,6 +9,7 @@ gunicorn==20.0.4
 idna==2.9
 lxml==4.5.0
 parse==1.15.0
+Pillow==7.1.1
 pyee==7.0.1
 pyppeteer==0.0.25
 pyquery==1.4.1

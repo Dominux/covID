@@ -93,7 +93,7 @@ class Action:
                              for i, item in enumerate(data_text) if i % 4 == 0}
 
         html_rus_results = self.response.html.find(
-            '.d-map__counter', first=True).find('h3')
+            '.d-map__counter', first=True).find('h3')[1:]
         self.rus_info = [_.text.split('+')[0] for _ in html_rus_results]
 
     def _get_attachment(self, club):
