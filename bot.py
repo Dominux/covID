@@ -115,9 +115,9 @@ class Action:
         """ Getting VK API """
         vk_session = vk_api.VkApi(
             login=self.DATA['auth']['user']['login'],
-            token=self.DATA['app']['access_token'],
-            app_id=self.DATA['app']['client_id'],
-            client_secret=self.DATA['app']['service_key']
+            token=self.DATA['auth']['app']['access_token'],
+            app_id=self.DATA['auth']['app']['client_id'],
+            client_secret=self.DATA['auth']['app']['service_key']
         )
         self.vk = vk_session.get_api()
     
@@ -125,8 +125,8 @@ class Action:
         return ''.join((
             self.DATA['message'],
             "\n\n",
-            ''.join(club['hashtags']),
-            ''.join(self.DATA['common_hashtags'])
+            club['hashtags'],
+            self.DATA['common_hashtags']
         ))
 
     def _make_vk_post(self, club, attachment: str):

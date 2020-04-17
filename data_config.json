@@ -16,14 +16,14 @@
     {
       "club_id": "999999",
       "region": "Московская область",
-      "hashtags": []
+      "hashtags": ""
     }
   ],
   "prod": [
     {
       "club_id": "999999",
       "region": "Московская область",
-      "hashtags": []
+      "hashtags": ""
     }
   ],
   "time_points": [
@@ -32,7 +32,7 @@
   ],
   "relay_in_seconds": 10,
   "message": "Актуальная информация на данный момент!",
-  "common_hashtags": [],
+  "common_hashtags": "",
   "image": {
     "filename": "image.jpg",
     "font_file": "Arial.ttf",
@@ -59,18 +59,19 @@
           20,
           620
         ],
-        100,
-        20
-      ],
-      [
-        100,
-        320
-      ],
-      [
-        100,
-        620
+        [
+          100,
+          20
+        ],
+        [
+          100,
+          320
+        ],
+        [
+          100,
+          620
+        ]
       ]
-    ]
+    }
   }
-}
 }
