@@ -2,7 +2,7 @@
   "statistic_website": "http://xn--80aesfpebagmfblc0a.xn--p1ai/",
   "post_url": "https://vk.com/wall-",
   "env": "dev",
-  "dev": {
+  "auth": {
     "user": {
       "login": "+12345678910"
     },
@@ -10,48 +10,29 @@
       "client_id": 9999999,
       "service_key": "4dc4b3874dc4b3874dc9b3877b4db4081a94dc99dc4b387134283364ef76577efc9a996",
       "access_token": "8d5aed9c2b3813706e18af65ca265411eda027c576a0fc413081507f04f1bf0963587cf12aff6f3cf3175"
-    },
-    "clubs": [
-      {
-        "club_id": "9999999",
-        "region": "Московская область"
-      }
-    ],
-    "time_points": [
-      "10:30",
-      "22:00"
-    ],
-    "relay_in_seconds": 10
+    }
   },
-  "prod": {
-    "user": {
-      "login": "+12345678910"
-    },
-    "app": {
-      "client_id": 9999999,
-      "service_key": "4dc4b3874dc4b3874dc9b3877b4db4081a94dc99dc4b387134283364ef76577efc9a996",
-      "access_token": "8d5aed9c2b3813706e18af65ca265411eda027c576a0fc413081507f04f1bf0963587cf12aff6f3cf3175"
-    },
-    "clubs": [
-      {
-        "club_id": "7777777",
-        "region": "Пензенская область"
-      },
-      {
-        "club_id": "88888888",
-        "region": "Алтайский край"
-      },
-      {
-        "club_id": "9999999",
-        "region": "Московская область"
-      }
-    ],
-    "times_points": [
-      "10:30",
-      "22:00"
-    ],
-    "relay_in_seconds": 10
-  },
+  "dev": [
+    {
+      "club_id": "999999",
+      "region": "Московская область",
+      "hashtags": []
+    }
+  ],
+  "prod": [
+    {
+      "club_id": "999999",
+      "region": "Московская область",
+      "hashtags": []
+    }
+  ],
+  "time_points": [
+    "10:30",
+    "22:00"
+  ],
+  "relay_in_seconds": 10,
+  "message": "Актуальная информация на данный момент!",
+  "common_hashtags": [],
   "image": {
     "filename": "image.jpg",
     "font_file": "Arial.ttf",
@@ -78,19 +59,18 @@
           20,
           620
         ],
-        [
-          100,
-          20
-        ],
-        [
-          100,
-          320
-        ],
-        [
-          100,
-          620
-        ]
+        100,
+        20
+      ],
+      [
+        100,
+        320
+      ],
+      [
+        100,
+        620
       ]
-    }
+    ]
   }
+}
 }

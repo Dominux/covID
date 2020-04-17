@@ -26,14 +26,14 @@ class Bot:
 
             print(
                 f"{datetime.now().time()} - Bot is running in {self.DATA['env'].upper()} mode")
-            time.sleep(self.DATA['info']['relay_in_seconds'])
+            time.sleep(self.DATA['relay_in_seconds'])
 
     def read_config(self):
         """ Setting DATA """
         with open('data_config.json', encoding='utf-8') as json_data:
             data = json.load(json_data)
 
-        data['info'] = data[data['env']]
+        data['clubs'] = data[data['env']]
         del data['dev']
         del data['prod']
 
@@ -50,7 +50,7 @@ class Bot:
             cur_datetime.day,
             int(time_point.split(':')[0]),
             int(time_point.split(':')[1])
-        ) for time_point in self.DATA['info']['time_points']]
+        ) for time_point in self.DATA['time_points']]
 
         self.next_post_time = time_points[0]
 
@@ -68,7 +68,7 @@ class Action:
 
     def __init__(self, data_from_bot):
         self.DATA = data_from_bot
-        self.clubs = self.DATA['info']['clubs']
+        self.clubs = self.DATA['clubs']
 
     def post_statistic(self):
         """ Post statisctic posts in all vk clubs """
@@ -89,18 +89,18 @@ class Action:
         """ Data parsing from response """
         html_table = self.response.html.find('.d-map__list', first=True)
         data_text = html_table.text.split('\n')
-        self.regions_info = {item: data_text[i + 1: i + 4]
+        self.regions_clubs = {item: data_text[i + 1: i + 4]
                              for i, item in enumerate(data_text) if i % 4 == 0}
 
         html_rus_results = self.response.html.find(
             '.d-map__counter', first=True).find('h3')[1:]
-        self.rus_info = [_.text.split('+')[0] for _ in html_rus_results]
+        self.rus_clubs = [_.text.split('+')[0] for _ in html_rus_results]
 
     def _get_attachment(self, club):
         """ Making attachment for VK post """
         vk_upload = vk_api.VkUpload(self.vk)
 
-        text_notes = self.regions_info[club['region']] + self.rus_info
+        text_notes = self.regions_clubs[club['region']] + self.rus_clubs
         image_file = StatisticImage(
             self.DATA['image'],
             club['region'],
@@ -114,17 +114,25 @@ class Action:
     def _get_vk_api(self):
         """ Getting VK API """
         vk_session = vk_api.VkApi(
-            login=self.DATA['info']['user']['login'],
-            token=self.DATA['info']['app']['access_token'],
-            app_id=self.DATA['info']['app']['client_id'],
-            client_secret=self.DATA['info']['app']['service_key']
+            login=self.DATA['auth']['user']['login'],
+            token=self.DATA['app']['access_token'],
+            app_id=self.DATA['app']['client_id'],
+            client_secret=self.DATA['app']['service_key']
         )
         self.vk = vk_session.get_api()
+    
+    def _create_post_text(self, club):
+        return ''.join((
+            self.DATA['message'],
+            "\n\n",
+            ''.join(club['hashtags']),
+            ''.join(self.DATA['common_hashtags'])
+        ))
 
     def _make_vk_post(self, club, attachment: str):
         """ Making VK post """
         post_id = self.vk.wall.post(
-            message='ке ллол',
+            message=self._create_post_text(club),
             attachment=attachment,
             owner_id=f"-{club['club_id']}",
             from_group=1
